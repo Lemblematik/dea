@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+        <TextView
+            android:id="@+id/orders_name_client"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/orders_name_client"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/orders_name_product"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/orders_name"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/orders_count_product"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/orders_count_product"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:id="@+id/orders_date_recuperation"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/orders_date_recuperation"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/orders_phone_item"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/orders_already_taken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/orders_already_taken_yes"
+            />
+
+
+
+</TableRow>

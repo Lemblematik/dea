@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:scrollbars="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/head_foto"
+            android:layout_width="380dp"
+            android:layout_height="182dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSelected"
+                android:layout_width="match_parent"
+                android:layout_height="143dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/foto_bearbeiten"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/recyclerViewSelected"
+                android:drawableLeft="@drawable/ic_filter_list_black_24dp"
+                android:text="MODIFY" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/foto_download_layout"
+            android:layout_width="380dp"
+            android:layout_height="182dp">
+
+            <ImageButton
+                android:id="@+id/download_imgBtn"
+                android:layout_width="156dp"
+                android:layout_height="99dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_photo_camera_black_90dp"
+                android:onClick="clickUpload"/>
+
+            <Button
+                android:id="@+id/download_btn"
+                android:layout_width="191dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/download_imgBtn"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="4dp"
+                android:drawableLeft="@drawable/ic_photo_camera_black_24dp"
+                android:text="@string/bilder_download"
+                android:onClick="clickUpload"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/under_foto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/head_foto"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="110dp">
+
+
+
+            <RelativeLayout
+                android:id="@+id/ueberschrift_part"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="62dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_ware"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/usernameWrapper"
+                        android:hint="@string/insert_name_ware"
+                        android:inputType="text"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:layout_marginTop="120dp"
+                android:id="@+id/price_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+
+                    android:id="@+id/insert_price"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/price"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="150dp"
+                    android:text="FCFA"
+                    android:textSize="20dp" />
+
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/insert_description_ware"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/price_details"
+                android:layout_marginTop="11dp"
+                android:ems="10"
+                android:text="@string/insertDescription"
+                android:textSize="16dp" />
+
+
+
+
+            <EditText
+                android:layout_below="@+id/insert_description_ware"
+                android:id="@+id/description1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description1"/>
+
+            <EditText
+                android:layout_below="@+id/description1"
+                android:id="@+id/description2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description2"/>
+
+
+            <EditText
+                android:layout_below="@+id/description2"
+                android:id="@+id/description3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description3"/>
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/chooseCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description3"
+                android:text="@string/chooseCategory"/>
+
+            <Spinner
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/chooseCategory"
+                android:id="@+id/category_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:id="@+id/choose_your_market"
+                android:layout_below="@+id/category_dropdown"
+                android:textSize="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chooseMarketName"/>
+            <Spinner
+                android:layout_below="@+id/choose_your_market"
+                android:layout_marginTop="8dp"
+                android:id="@+id/ware_market_name_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+
+            <LinearLayout
+                android:layout_below="@+id/ware_market_name_dropdown"
+                android:orientation="vertical"
+                android:id="@+id/ware_subCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/ware_subCategory_title"
+                    android:textSize="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chooseSubcategory"/>
+                <Spinner
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/ware_subCategory_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+            <EditText
+                android:layout_below="@+id/ware_subCategory"
+                android:id="@+id/position_market_Ware"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/describ_how_to_find"/>
+
+
+            <CheckBox
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/position_market_Ware"
+                android:id="@+id/checkBox_condition"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acceptCondition" />
+
+            <Button
+                android:id="@+id/publish_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkBox_condition"
+                android:layout_marginTop="20dp"
+                android:text="@string/save"
+                android:onClick="saveNewWare"/>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+</ScrollView>
