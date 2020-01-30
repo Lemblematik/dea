@@ -1,0 +1,13 @@
+package com.cmr.dea.wareapi.demo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class WareApiApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
