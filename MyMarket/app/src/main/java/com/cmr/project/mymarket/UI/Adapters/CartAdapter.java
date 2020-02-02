@@ -58,7 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         itemHolder.priceTextView.setText(waresItems.get(position).getPrice());
         itemHolder.imageView.setImageResource(R.drawable.logo);
         //itemHolder.imageView.setImageResource(carrierItems.get(position).getIcon());
-        itemHolder.cart_ware_name_seller.append(waresItems.get(position).getWareSellerId());
+        itemHolder.cart_ware_name_seller.append(waresItems.get(position).getWareSellerName());
 
 
 

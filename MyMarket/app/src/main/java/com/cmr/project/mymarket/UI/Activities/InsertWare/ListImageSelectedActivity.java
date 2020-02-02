@@ -242,7 +242,8 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
         String result = res.concat(desc3);
         wareRequest.setDescription(result);
         wareRequest.setMarketPosition(position_market_Ware.getText().toString());
-        wareRequest.setWareSellerId(getActuelUserClientId());
+        wareRequest.setWareSellerId(getActuelUser().getClientId());
+        wareRequest.setWareSellerName(getActuelUser().getFirstName() +" " + getActuelUser().getLastName());
 
         //checkbox
         this.checkBox_condition.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -260,13 +261,13 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
         wareRequest.setFotos(getAllImages());
         return wareRequest;
     }
-    public String getActuelUserClientId(){
+    public ClientResponseModel getActuelUser(){
         ClientResponseModel clientResponseModel = new ClientResponseModel();
         SharedPreferences mPrefs = getSharedPreferences("saveUser",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("actuel_user", "");
         clientResponseModel =  gson.fromJson(json, ClientResponseModel.class);
-        return clientResponseModel.getClientId();
+        return clientResponseModel;
     }
 
 

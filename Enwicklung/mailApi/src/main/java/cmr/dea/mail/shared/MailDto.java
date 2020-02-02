@@ -1,23 +1,24 @@
-package com.cmr.project.mymarket.RequestModell;
+package cmr.dea.mail.shared;
 
-import com.cmr.project.mymarket.ResponseModel.CarrierOrder;
+import cmr.dea.mail.modell.CarrierOrder;
 
 import java.util.List;
 
-public class MailRequest {
+public class MailDto {
+    private String mailId;
     private String nameSender;
-    private List<CarrierOrder> carrierOrderRespons;
+    private List<CarrierOrder> carrierOrderResponse;
     private String receiverId;
     private String message;
     private String date;
     private String subject;
 
-    public String getSubject() {
-        return subject;
+    public String getMailId() {
+        return mailId;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setMailId(String mailId) {
+        this.mailId = mailId;
     }
 
     public String getNameSender() {
@@ -28,12 +29,12 @@ public class MailRequest {
         this.nameSender = nameSender;
     }
 
-    public List<CarrierOrder> getCarrierOrderRespons() {
-        return carrierOrderRespons;
+    public List<CarrierOrder> getCarrierOrderResponse() {
+        return carrierOrderResponse;
     }
 
-    public void setCarrierOrderRespons(List<CarrierOrder> carrierOrderRespons) {
-        this.carrierOrderRespons = carrierOrderRespons;
+    public void setCarrierOrderResponse(List<CarrierOrder> carrierOrderResponse) {
+        this.carrierOrderResponse = carrierOrderResponse;
     }
 
     public String getReceiverId() {
@@ -58,5 +59,13 @@ public class MailRequest {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

@@ -53,11 +53,5 @@ public interface ApiWare {
     Call<List<WareResponse>> getSearchWare(@Path("marketPlace") String marketPlace,@Path("category") String category,@Path("name") String name);
 
 
-    //TODO
-    @GET("wares/mails/all/{carrierId}")
-    Call<List<MailResponse>> getAllMail(@Path("carrierId") String carrierId);
-
-    @GET("wares/mails/{mailId}")
-    Call<MailResponse> getMailContent(@Path("mailId") String mailId);
 
 }

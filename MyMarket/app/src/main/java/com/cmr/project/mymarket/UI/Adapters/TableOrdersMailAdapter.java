@@ -32,18 +32,18 @@ public class TableOrdersMailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     int with_mail_name_ware;
     int with_mail_category_ware;
     int with_mail_subcategory_ware;
-    int with_mail_count_ware;
+    int with_mail_seller_name;
     int with_mail_position_ware;
     int with_mail_market_place;
 
-    public TableOrdersMailAdapter(List<CarrierOrder> ordersItems, Context mContext, int with_mail_name_ware, int with_mail_category_ware, int with_mail_subcategory_ware, int with_mail_count_ware, int with_mail_position_ware, int with_mail_market_place) {
+    public TableOrdersMailAdapter(List<CarrierOrder> ordersItems, Context mContext, int with_mail_name_ware, int with_mail_category_ware, int with_mail_subcategory_ware, int with_mail_seller_name, int with_mail_position_ware, int with_mail_market_place) {
         this.ordersItems = ordersItems;
         this.mContext = mContext;
-        this.inflater = inflater;
+        this.inflater = LayoutInflater.from(mContext);
         this.with_mail_name_ware = with_mail_name_ware;
         this.with_mail_category_ware = with_mail_category_ware;
         this.with_mail_subcategory_ware = with_mail_subcategory_ware;
-        this.with_mail_count_ware = with_mail_count_ware;
+        this.with_mail_seller_name = with_mail_seller_name;
         this.with_mail_position_ware = with_mail_position_ware;
         this.with_mail_market_place = with_mail_market_place;
     }
@@ -61,8 +61,8 @@ public class TableOrdersMailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         itemHolder.mail_name_ware.setText(ordersItems.get(position).getWareName());
         itemHolder.mail_name_ware.setWidth(with_mail_name_ware);
 
-        itemHolder.mail_count_ware.setText(Integer.toString(ordersItems.get(position).getCount()));
-        itemHolder.mail_count_ware.setWidth(with_mail_count_ware);
+        itemHolder.mail_seller_name.setText(ordersItems.get(position).getNameSeller());
+        itemHolder.mail_seller_name.setWidth(with_mail_seller_name);
 
 
         itemHolder.mail_category_ware.setText(ordersItems.get(position).getCategory());
@@ -93,7 +93,7 @@ public class TableOrdersMailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public static class ItemHolder extends RecyclerView.ViewHolder {
         public TextView mail_name_ware;
         public TextView mail_category_ware;
-        public TextView mail_count_ware;
+        public TextView mail_seller_name;
         public TextView mail_position_ware;
         public TextView mail_market_place;
         public TextView mail_subcategory_ware;
@@ -102,7 +102,7 @@ public class TableOrdersMailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             super(itemView);
             mail_name_ware = itemView.findViewById(R.id.mail_name_ware);
             mail_category_ware = itemView.findViewById(R.id.mail_category_ware);
-            mail_count_ware = itemView.findViewById(R.id.mail_count_ware);
+            mail_seller_name = itemView.findViewById(R.id.mail_seller_name);
             mail_position_ware = itemView.findViewById(R.id.mail_position_ware);
             mail_market_place = itemView.findViewById(R.id.mail_market_place);
             mail_subcategory_ware = itemView.findViewById(R.id.mail_subcategory_ware);

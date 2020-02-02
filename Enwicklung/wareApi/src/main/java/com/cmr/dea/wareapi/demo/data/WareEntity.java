@@ -49,6 +49,16 @@ public class WareEntity implements Serializable {
     private String phone;
     private String date;
     private String marketPlace;
+    private String wareSellerName;
+
+
+    public String getWareSellerName() {
+        return wareSellerName;
+    }
+
+    public void setWareSellerName(String wareSellerName) {
+        this.wareSellerName = wareSellerName;
+    }
 
     public String getMarketPosition() {
         return marketPosition;

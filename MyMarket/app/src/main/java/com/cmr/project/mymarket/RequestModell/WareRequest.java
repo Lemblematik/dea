@@ -15,6 +15,15 @@ public class WareRequest {
     private String marketPlace;
     public String marketPosition;
     private String subCategory;
+    private String wareSellerName;
+
+    public String getWareSellerName() {
+        return wareSellerName;
+    }
+
+    public void setWareSellerName(String wareSellerName) {
+        this.wareSellerName = wareSellerName;
+    }
 
     public String getSubCategory() {
         return subCategory;

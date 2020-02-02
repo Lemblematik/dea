@@ -20,6 +20,15 @@ public class WareDto implements Serializable {
     private boolean rightAgree;
     private String marketPosition;
     private String subCategory;
+    private String wareSellerName;
+
+    public String getWareSellerName() {
+        return wareSellerName;
+    }
+
+    public void setWareSellerName(String wareSellerName) {
+        this.wareSellerName = wareSellerName;
+    }
 
     public String getMarketPosition() {
         return marketPosition;

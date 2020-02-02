@@ -1,6 +1,5 @@
-package com.cmr.project.mymarket.RequestModell;
+package cmr.dea.mail.modell;
 
-import com.cmr.project.mymarket.ResponseModel.CarrierOrder;
 
 import java.util.List;
 

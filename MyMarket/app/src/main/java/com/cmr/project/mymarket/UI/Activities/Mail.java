@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cmr.project.mymarket.Boundary.Carrier.ApiCarrier;
 import com.cmr.project.mymarket.Boundary.Carrier.ApiClientCarrier;
+import com.cmr.project.mymarket.Boundary.Mail.ApiClientMail;
+import com.cmr.project.mymarket.Boundary.Mail.ApiMail;
 import com.cmr.project.mymarket.Boundary.Ware.ApiClientWare;
 import com.cmr.project.mymarket.Boundary.Ware.ApiWare;
 import com.cmr.project.mymarket.R;
@@ -56,8 +58,8 @@ public class Mail extends AppCompatActivity {
     }
 
     public void getAllEmail(String carrierId){
-        ApiWare apiWare = ApiClientWare.getClient().create(ApiWare.class);
-        Call<List<MailResponse>> call = apiWare.getAllMail(carrierId);
+        ApiMail apiWare = ApiClientMail.getClient().create(ApiMail.class);
+        Call<List<MailResponse>> call = apiWare.getAllMyMails(carrierId);
         call.enqueue(new Callback<List<MailResponse>>() {
             @Override
             public void onResponse(Call<List<MailResponse>> call, Response<List<MailResponse>> response) {

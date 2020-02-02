@@ -65,8 +65,9 @@ public class WaresServiceImpl implements WareService  {
         wareEntity.setWareSellerId(wareDetails.getWareSellerId());
         wareEntity.setMarketPlace(wareDetails.getMarketPlace());
         wareEntity.setRightAgree(wareDetails.isRightAgree());
-
+        wareEntity.setWareSellerName(wareDetails.getWareSellerName());
         wareEntity.setDate(wareDetails.getDate());
+
         waresRepository.save(wareEntity);
         return new ModelMapper().map(wareEntity,WareDto.class);
     }

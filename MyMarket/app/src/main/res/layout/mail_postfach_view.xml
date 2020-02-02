@@ -23,5 +23,12 @@
                 android:maxLines="1"
                 android:layout_height="wrap_content"
                 android:gravity="left" />
+            <ImageButton
+                android:id="@+id/delete_mail_from_postbox"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close_black_24dp"/>
+
         </RelativeLayout>
 </androidx.cardview.widget.CardView>

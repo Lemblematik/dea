@@ -25,7 +25,7 @@
 
 
     <TextView
-        android:id="@+id/mail_count_ware"
+        android:id="@+id/mail_seller_name"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_weight="1"

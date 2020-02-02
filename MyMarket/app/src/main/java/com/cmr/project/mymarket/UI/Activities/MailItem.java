@@ -9,14 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cmr.project.mymarket.Boundary.Ware.ApiClientWare;
-import com.cmr.project.mymarket.Boundary.Ware.ApiWare;
+import com.cmr.project.mymarket.Boundary.Mail.ApiClientMail;
+import com.cmr.project.mymarket.Boundary.Mail.ApiMail;
+
 import com.cmr.project.mymarket.R;
 import com.cmr.project.mymarket.ResponseModel.CarrierOrder;
 import com.cmr.project.mymarket.ResponseModel.MailResponse;
 import com.cmr.project.mymarket.UI.Adapters.TableOrdersMailAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,7 +45,7 @@ public class MailItem extends AppCompatActivity {
     }
 
     private void getEmailContent(String mailId) {
-        ApiWare apiWare = ApiClientWare.getClient().create(ApiWare.class);
+        ApiMail apiWare = ApiClientMail.getClient().create(ApiMail.class);
         Call<MailResponse> call = apiWare.getMailContent(mailId);
         call.enqueue(new Callback<MailResponse>() {
             @Override
@@ -88,8 +88,8 @@ public class MailItem extends AppCompatActivity {
         TextView mail_position_ware = findViewById(R.id.mail_position_ware);
         int with_mail_position_ware = mail_position_ware.getMeasuredWidth();
 
-        TextView mail_count_ware = findViewById(R.id.mail_count_ware);
-        int with_mail_count_ware = mail_count_ware.getMeasuredWidth();
+        TextView mail_seller_name = findViewById(R.id.mail_seller_name);
+        int with_mail_seller_name = mail_seller_name.getMeasuredWidth();
 
         TextView mail_subcategory_ware = findViewById(R.id.mail_subcategory_ware);
         int with_mail_subcategory_ware = mail_subcategory_ware.getMeasuredWidth();
@@ -106,7 +106,7 @@ public class MailItem extends AppCompatActivity {
 
 
         mail_commands_recyclerview.setHasFixedSize(true);
-        tableOrdersMailAdapter = new TableOrdersMailAdapter(carrierOrders,this,with_mail_name_ware,with_mail_category_ware,with_mail_subcategory_ware,with_mail_count_ware,with_mail_position_ware,with_mail_market_place);
+        tableOrdersMailAdapter = new TableOrdersMailAdapter(carrierOrders,this,with_mail_name_ware,with_mail_category_ware,with_mail_subcategory_ware,with_mail_seller_name,with_mail_position_ware,with_mail_market_place);
         mail_commands_recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mail_commands_recyclerview.setAdapter(tableOrdersMailAdapter);
     }

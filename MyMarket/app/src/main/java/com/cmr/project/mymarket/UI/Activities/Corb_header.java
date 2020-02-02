@@ -10,11 +10,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cmr.project.mymarket.Boundary.Mail.ApiClientMail;
+import com.cmr.project.mymarket.Boundary.Mail.ApiMail;
 import com.cmr.project.mymarket.Boundary.Order.ApiClientOrder;
 import com.cmr.project.mymarket.Boundary.Order.ApiOrder;
 import com.cmr.project.mymarket.Boundary.Ware.ApiWare;
@@ -24,6 +27,7 @@ import com.cmr.project.mymarket.RequestModell.MailRequest;
 import com.cmr.project.mymarket.RequestModell.OrdersRequestModell;
 import com.cmr.project.mymarket.ResponseModel.CarrierOrder;
 import com.cmr.project.mymarket.ResponseModel.ClientResponseModel;
+import com.cmr.project.mymarket.ResponseModel.MailResponse;
 import com.cmr.project.mymarket.ResponseModel.OrdersResponseModell;
 import com.cmr.project.mymarket.ResponseModel.WareResponse;
 import com.cmr.project.mymarket.UI.Adapters.CartAdapter;
@@ -163,6 +167,21 @@ public class Corb_header extends AppCompatActivity {
 
     private void sendEmailToCarrier(MailRequest mailRequest) {
         //TODO  wareSellerName in responseWare-- wareapi
+        ApiMail api = ApiClientMail.getClient().create(ApiMail.class);
+        Call<MailResponse> call = api.createNewMail(mailRequest);
+        call.enqueue(new Callback<MailResponse>() {
+            @Override
+            public void onResponse(Call<MailResponse> call, Response<MailResponse> response) {
+                Log.d("Mail Post Call", "gut");
+                Toast.makeText(Corb_header.this, "Mail is sended to " + getIntent().getStringExtra("carrier_infos"), Toast.LENGTH_SHORT).show();
+
+            }
+            @Override
+            public void onFailure(Call<MailResponse> call, Throwable t) {
+                Log.d("Mail Post Call", "Errorr");
+            }
+        });
+
     }
 
 
