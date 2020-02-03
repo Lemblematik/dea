@@ -31,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/mail_Message" />
+<!--
+
 
             <TextView
                 android:textStyle="bold"
@@ -118,10 +120,9 @@
 
 
 
-
+-->
             <LinearLayout
                 android:layout_marginTop="20dp"
-                android:id="@+id/end_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -129,19 +130,11 @@
 
                 <Button
                     android:textStyle="bold"
-                    android:id="@+id/accept"
-                    android:layout_width="155dp"
+                    android:id="@+id/answerMsg"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/accept" />
+                    android:text="@string/send_msg" />
 
-                <Button
-                    android:layout_alignParentRight="true"
-                    android:textStyle="bold"
-                    android:id="@+id/decline"
-                    android:layout_width="155dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:text="@string/refuse" />
             </LinearLayout>
         </LinearLayout>
 

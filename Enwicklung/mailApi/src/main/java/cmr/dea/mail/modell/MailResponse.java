@@ -5,12 +5,19 @@ import java.util.List;
 public class MailResponse {
     private String mailId;
     private String nameSender;
-    private List<CarrierOrder> carrierOrderResponse;
     private String receiverId;
     private String message;
     private String date;
     private String subject;
+    private String senderId;
 
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public String getMailId() {
         return mailId;
@@ -26,14 +33,6 @@ public class MailResponse {
 
     public void setNameSender(String nameSender) {
         this.nameSender = nameSender;
-    }
-
-    public List<CarrierOrder> getCarrierOrderResponse() {
-        return carrierOrderResponse;
-    }
-
-    public void setCarrierOrderResponse(List<CarrierOrder> carrierOrderResponse) {
-        this.carrierOrderResponse = carrierOrderResponse;
     }
 
     public String getSubject() {

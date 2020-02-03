@@ -12,6 +12,15 @@ public class MailDto {
     private String message;
     private String date;
     private String subject;
+    private String senderId;
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public String getMailId() {
         return mailId;

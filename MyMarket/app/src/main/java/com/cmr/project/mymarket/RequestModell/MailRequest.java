@@ -8,9 +8,18 @@ public class MailRequest {
     private String nameSender;
     private List<CarrierOrder> carrierOrderRespons;
     private String receiverId;
+    private String senderId;
     private String message;
     private String date;
     private String subject;
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public String getSubject() {
         return subject;

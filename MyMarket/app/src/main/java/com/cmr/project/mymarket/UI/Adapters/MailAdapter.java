@@ -102,7 +102,7 @@ public class MailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public ImageButton delete_mail_from_postbox;
         public ItemHolder(View itemView) {
             super(itemView);
-            mail_senderName = (TextView) itemView.findViewById(R.id.mail_senderName);
+            mail_senderName = itemView.findViewById(R.id.mail_senderName);
             cardView = itemView.findViewById(R.id.mail_layout);
             mail_subject = itemView.findViewById(R.id.mail_subject);
             delete_mail_from_postbox = itemView.findViewById(R.id.delete_mail_from_postbox);

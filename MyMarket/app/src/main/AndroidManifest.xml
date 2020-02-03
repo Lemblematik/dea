@@ -30,11 +30,16 @@
         <activity android:name=".UI.Activities.Corb_header"
             android:parentActivityName=".MainActivity"
             android:label="@string/corb"></activity>
-        <activity android:name=".UI.Activities.MailItem" />
+        <activity android:name=".UI.Activities.MailItem"
+            android:parentActivityName=".UI.Activities.Mail"
+            android:label="@string/contentMail"/>
         <activity android:name=".UI.Activities.About"
             android:label="@string/nav_about"></activity>
         <activity android:name=".UI.Activities.Mail"
+            android:parentActivityName=".MainActivity"
             android:label="@string/nav_mail"></activity>
+        <activity android:name=".UI.Activities.ResponseMailView"
+            android:label="@string/answerMail"/>
         <activity android:name=".UI.Activities.Account"
             android:label="@string/nav_my_account"></activity>
         <activity android:name=".UI.Activities.MyOrders"

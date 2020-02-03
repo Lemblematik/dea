@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/mailTo_response"
+        android:hint="@string/mailTo"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/corb_mail_subject_response"
+        android:hint="@string/mailSubject"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:ems="10"
+        android:gravity="left|top"
+        android:hint="@string/accept_msg"
+        android:inputType="textMultiLine"
+        android:textSize="15sp"
+        android:id="@+id/corb_mail_message_response" />
+    <requestFocus />
+    <Button
+        android:id="@+id/sendOrdersCarrierBtn_response"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/delivery_radio_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send" />
+
+</LinearLayout>

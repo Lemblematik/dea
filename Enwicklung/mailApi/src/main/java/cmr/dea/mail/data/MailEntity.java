@@ -19,8 +19,8 @@ public class MailEntity  implements Serializable {
     @Column(nullable = false)
     private String nameSender;
 
-    @OneToMany(mappedBy="mailEntity")
-    private List<CarrierOrderEntity> carrierOrderResponse;
+    //@OneToMany(mappedBy="mailEntity")
+    //private List<CarrierOrderEntity> carrierOrderResponse;
 
     @Column(nullable = false)
     private String receiverId;
@@ -33,6 +33,17 @@ public class MailEntity  implements Serializable {
 
     @Column(nullable = false)
     private String subject;
+
+    @Column(nullable = false)
+    private String senderId;
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
 
     public long getId() {
         return id;
@@ -58,6 +69,7 @@ public class MailEntity  implements Serializable {
         this.nameSender = nameSender;
     }
 
+    /*
     public List<CarrierOrderEntity> getCarrierOrderResponse() {
         return carrierOrderResponse;
     }
@@ -65,6 +77,8 @@ public class MailEntity  implements Serializable {
     public void setCarrierOrderResponse(List<CarrierOrderEntity> carrierOrderResponse) {
         this.carrierOrderResponse = carrierOrderResponse;
     }
+
+     */
 
     public String getReceiverId() {
         return receiverId;

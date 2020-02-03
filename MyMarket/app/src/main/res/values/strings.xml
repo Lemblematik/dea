@@ -144,8 +144,13 @@
     <string name="write_email">you can write a mail to the post to tell him what you want. For exemple:\n what time you want to see him to make the shop together ? \n Where do you want to meet him ? \n etc..</string>
     <string name="write_your_email">Write your mail...</string>
     <string name="mail_seller_name">Seller Name</string>
-    <string name="ListeCommandView">List of command not yet disponible... Only after the online payment possibitlity, you can see in mails all commands of the clients and you can take this and deliver to the person</string>
+    <string name="ListeCommandView">List of command not yet disponible... Only after the online payment possibitlity works, you can see in mails all commands of the clients and you can take this and deliver to the person</string>
     <string name="accept">Accept</string>
     <string name="refuse">Decline</string>
+    <string name="contentMail">Content Mail</string>
+    <string name="send">Send</string>
+    <string name="accept_msg">Hello, \n thank you that you have choosed me to help you to do your market. i confirm the appointement \n\n Cordialement</string>
+    <string name="send_msg">Answer of message</string>
+    <string name="answerMail">Answer of mail</string>
 
 </resources>

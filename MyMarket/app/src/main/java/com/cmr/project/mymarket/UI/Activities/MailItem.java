@@ -1,8 +1,11 @@
 package com.cmr.project.mymarket.UI.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +34,8 @@ public class MailItem extends AppCompatActivity {
     MailResponse mailResponse;
     RecyclerView mail_commands_recyclerview;
     TableOrdersMailAdapter tableOrdersMailAdapter;
+    Button answerMsg;
+
 
 
 
@@ -38,44 +43,60 @@ public class MailItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mail_item);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initializeView();
-        getEmailContent(getIntent().getStringExtra("mailId"));
+        final String mailId = getIntent().getStringExtra("mailId");
+        getEmailContent(mailId);
+
     }
 
-    private void getEmailContent(String mailId) {
-        ApiMail apiWare = ApiClientMail.getClient().create(ApiMail.class);
-        Call<MailResponse> call = apiWare.getMailContent(mailId);
+    public void getEmailContent(String mailId) {
+
+        ApiMail api = ApiClientMail.getClient().create(ApiMail.class);
+        Call<MailResponse> call = api.getMailContent(mailId);
         call.enqueue(new Callback<MailResponse>() {
             @Override
             public void onResponse(Call<MailResponse> call, Response<MailResponse> response) {
-                MailResponse results = response.body();
-                mailResponse = new MailResponse();
-                mailResponse = results;
-                setViewContentMail(mailResponse);
-                Log.d("Mail get", "gutt");
-
+                MailResponse result = response.body();
+                setViewContentMail(result);
+                Log.d("Mail Get Call", "Gut");
             }
+
             @Override
             public void onFailure(Call<MailResponse> call, Throwable t) {
-                Log.d("Mail get Call", "Errorr");
+                Log.d("Ware Get Call", "Failed");
             }
         });
+
     }
 
-    private void setViewContentMail(MailResponse mailResponse) {
+    public void setViewContentMail(final MailResponse mailResponse) {
         mail_From.append(mailResponse.getNameSender());
         mail_Message.append(mailResponse.getMessage());
         mail_Subject.append(mailResponse.getSubject());
-        handleMailCommands(mailResponse.getCarrierOrderResponse());
+        //handleMailCommands(mailResponse.getCarrierOrderResponse());
+
+
+        answerMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MailItem.this,ResponseMailView.class);
+                intent.putExtra("senderId",mailResponse.getSenderId());
+                intent.putExtra("receiverId",mailResponse.getReceiverId());
+                intent.putExtra("nameSender",mailResponse.getNameSender());
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void initializeView() {
         mail_From = findViewById(R.id.mail_From);
         mail_Subject = findViewById(R.id.mail_Subject);
         mail_Message = findViewById(R.id.mail_Message);
-        mail_commands_recyclerview = findViewById(R.id.mail_commands_recyclerview);
+        //mail_commands_recyclerview = findViewById(R.id.mail_commands_recyclerview);
+        answerMsg = findViewById(R.id.answerMsg);
     }
 
 
@@ -109,13 +130,6 @@ public class MailItem extends AppCompatActivity {
         tableOrdersMailAdapter = new TableOrdersMailAdapter(carrierOrders,this,with_mail_name_ware,with_mail_category_ware,with_mail_subcategory_ware,with_mail_seller_name,with_mail_position_ware,with_mail_market_place);
         mail_commands_recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mail_commands_recyclerview.setAdapter(tableOrdersMailAdapter);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        onBackPressed();
-        return true;
     }
 
 }

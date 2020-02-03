@@ -36,17 +36,10 @@ public class Mail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_mail);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getAllEmail(getActuelUserClientId());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        onBackPressed();
-        return true;
-    }
 
 
     private void setViewMail(List<MailResponse> mailResponse) {
