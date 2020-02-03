@@ -55,12 +55,15 @@ public class mailController {
         mailService.deleteMyReceivedMails(receiverId,mailId);
         return ResponseEntity.noContent().build();
     }
+   /*
 
     @DeleteMapping("{senderId}/{mailId}")
-    public ResponseEntity<Void> deleteMyMailFromSender(@PathVariable("senderId") String senderId,@PathVariable("mailId") String mailId){
+    public ResponseEntity<Void> deleteMyMailFromSender(@RequestParam(value="senderId") String senderId,@PathVariable("mailId") String mailId){
         mailService.deleteMySendMails(senderId,mailId);
         return ResponseEntity.noContent().build();
     }
+
+    */
 
     @GetMapping("{mailId}")
     public ResponseEntity<MailResponse> getMailContent(@PathVariable("mailId") String mailId){

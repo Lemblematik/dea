@@ -1,5 +1,7 @@
 package com.cmr.project.mymarket.UI.Activities.Tabs;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +34,7 @@ public class Alimentation extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getAllWaresFromCategory(getResources().getString(R.string.marche_de_biyem_assi),getResources().getString(R.string.shops_nav_alimentation));
+        getAllWaresFromCategory(getMarketNameChoosen(),getResources().getString(R.string.shops_nav_alimentation));
     }
 
     public void getAllWaresFromCategory( String marketPlace, String category) {
@@ -62,5 +64,14 @@ public class Alimentation extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 4));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(adapter);
+    }
+
+    public String getMarketNameChoosen(){
+        SharedPreferences  mPrefs = getActivity().getSharedPreferences("saveMarketName", Context.MODE_PRIVATE);
+        String marketName = mPrefs.getString("marketName", "");
+        if(marketName == null){
+            return getResources().getString(R.string.marche_de_biyem_assi);
+        }
+        return marketName;
     }
 }

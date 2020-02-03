@@ -36,7 +36,7 @@
     <string name="marketName">Market Name:   </string>
     <string name="my_wares">My Wares</string>
     <string name="new_message">New Orders</string>
-    <string name="send_orders">Send orders</string>
+    <string name="send_orders">Send orders To Seller</string>
     <string name="orders_name">Name product</string>
     <string name="orders_name_client">Name client</string>
     <string name="orders_date_recuperation">Recovery date</string>
@@ -152,5 +152,7 @@
     <string name="accept_msg">Hello, \n thank you that you have choosed me to help you to do your market. i confirm the appointement \n\n Cordialement</string>
     <string name="send_msg">Answer of message</string>
     <string name="answerMail">Answer of mail</string>
+    <string name="changeMarketName">You can Change the market name inside of all the app, to see only the products coming from this market</string>
+    <string name="changeMarketNameTitle">Change Market</string>
 
 </resources>

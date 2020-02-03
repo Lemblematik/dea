@@ -8,6 +8,7 @@ import com.cmr.project.mymarket.ResponseModel.ClientResponseModel;
 import com.cmr.project.mymarket.ResponseModel.WareResponse;
 import com.cmr.project.mymarket.UI.Activities.Corb_header;
 import com.cmr.project.mymarket.UI.Activities.Login.LoginView;
+import com.cmr.project.mymarket.UI.Activities.Popup.ChangeMarketName;
 import com.cmr.project.mymarket.UI.Adapters.NavigationDrawerAdapter;
 import com.cmr.project.mymarket.UI.Activities.Tabs.OfferService;
 import com.cmr.project.mymarket.UI.Activities.Tabs.Alimentation;
@@ -17,6 +18,7 @@ import com.cmr.project.mymarket.UI.Activities.Tabs.Home;
 import com.cmr.project.mymarket.UI.Activities.Tabs.Shoes;
 import com.cmr.project.mymarket.UI.Activities.Tabs.Electronic;
 import com.cmr.project.mymarket.UI.UI_Model.DrawerItem;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -127,19 +129,24 @@ public class MainActivity extends AppCompatActivity {
         handleTabView();
 
         //handle marche name
-        /*
+
         FloatingActionButton fab = findViewById(R.id.fab_main);
         fab.setContentDescription("Start Chat");
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ListImageSelectedActivity.class));
+                openDialogToChangeMarketName();
             }
         });
-*/
 
 
 
+
+    }
+
+    private void openDialogToChangeMarketName() {
+        ChangeMarketName dialog = new ChangeMarketName();
+        dialog.show(getSupportFragmentManager(),"test");
     }
 
     private void showLoginView() {
