@@ -44,15 +44,15 @@ public class CarrierController {
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
-    @GetMapping(value = "/{wareId}")
-    public ResponseEntity<CarrierResponseModel> getClient(@PathVariable("wareId") String wareId){
+    @GetMapping(value = "/{carrierId}")
+    public ResponseEntity<CarrierResponseModel> getClient(@PathVariable("carrierId") String wareId){
         CarrierDto clientDto = carriersService.getInfosCarrier(wareId);
         CarrierResponseModel returnValue = new ModelMapper().map(clientDto,CarrierResponseModel.class);
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
     }
 
-    @PutMapping(path = "/{clientId}")
-    public ResponseEntity<CarrierResponseModel> updateClient(@PathVariable("clientId") String clientId, @Valid @RequestBody CarrierRequestModell wareDetails){
+    @PutMapping(path = "/{carrierId}")
+    public ResponseEntity<CarrierResponseModel> updateClient(@PathVariable("carrierId") String clientId, @Valid @RequestBody CarrierRequestModell wareDetails){
 
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -65,8 +65,8 @@ public class CarrierController {
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
-    @DeleteMapping(value = "/{clientId}")
-    public ResponseEntity<Void> deleteWare(@PathVariable("clientId") String clientId){
+    @DeleteMapping(value = "/{carrierId}")
+    public ResponseEntity<Void> deleteWare(@PathVariable("carrierId") String clientId){
         carriersService.deleteCarrier(clientId);
         return ResponseEntity.noContent().build();
     }

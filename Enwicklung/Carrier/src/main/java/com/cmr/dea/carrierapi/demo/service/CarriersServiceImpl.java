@@ -29,7 +29,6 @@ public class CarriersServiceImpl implements CarriersService{
     }
     @Override
     public CarrierDto createCarrier(CarrierDto carrierDto) {
-        carrierDto.setCarrierId("3657ee0e-7240-429e-8a62-29a826e6d77d");
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         CarrierEntity carrierEntity = modelMapper.map(carrierDto, CarrierEntity.class);
