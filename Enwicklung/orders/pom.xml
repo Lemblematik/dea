@@ -12,6 +12,7 @@
     <artifactId>orders</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>orders</name>
+    <packaging>jar</packaging>
     <description>Orders Dea App</description>
 
     <properties>
