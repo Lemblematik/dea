@@ -11,7 +11,8 @@
     <groupId>com.cmr.dea.eurekaserver</groupId>
     <artifactId>server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka server</name>
+    <name>eurekaServer</name>
+    <packaging>jar</packaging>
     <description>Server DEA App</description>
 
     <properties>

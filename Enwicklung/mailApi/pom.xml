@@ -12,6 +12,7 @@
     <artifactId>mail</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mail</name>
+    <packaging>jar</packaging>
     <description>Mail System</description>
 
     <properties>
