@@ -1,4 +1,5 @@
 package com.cmr.project.mymarket.UI.Activities.InsertWare;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -18,8 +19,10 @@ import android.widget.EditText;
 
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +64,8 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
     public Spinner spinnerSubCategory;
     public Spinner ware_market_name_dropdown;
     public CheckBox checkBox_condition;
+
+    public int LIMITNUMBEROFPRODUCT = 3;
 
 
     public void initialiseView(){
@@ -106,8 +111,7 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
             btn_bearbeiten.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent_gallery = new Intent(ListImageSelectedActivity.this, InsertNewWare.class);
-                    startActivity(intent_gallery);
+                    insertGoodAndLimitedFotos();
                 }
             });
 
@@ -168,9 +172,27 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
 
 
     public void clickUpload(View view){
-        //check run time permission
-        Intent intent1 = new Intent(this, InsertNewWare.class);
-        startActivity(intent1);
+        insertGoodAndLimitedFotos();
+    }
+
+    private void insertGoodAndLimitedFotos() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Fotos for new product");
+        alert.setMessage("For this trial periode, Please insert max 2 or 3 fotos for the product ");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //check run time permission
+                Intent intent1 = new Intent(ListImageSelectedActivity.this, InsertNewWare.class);
+                startActivity(intent1);
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListImageSelectedActivity.this, "No Fotos can not be added", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
     }
 
     //get Images
@@ -226,6 +248,28 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
 
     }
 
+    public boolean checkProductInfosAreFilled(){
+        if(insert_name_ware.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert the name of product", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name, the category and subCategory of the product is correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (description3.getText().toString().matches("") || description2.getText().toString().matches("") || description1.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, atleast 3 descriptions to this 3 field of the project", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name, the category and subCategory of the product is correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (insert_price.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert the price of product", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name, the category and subCategory of the product is correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (position_market_Ware.getText().toString().matches("")){
+            Toast.makeText(this,  " Please insert your position in market", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name, the category and subCategory of the product is correct", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+
+    }
+
     public WareRequest getInputField(){
         final WareRequest wareRequest = new WareRequest();
         wareRequest.setName(insert_name_ware.getText().toString());
@@ -273,13 +317,33 @@ public class ListImageSelectedActivity  extends AppCompatActivity {
 
 
     public void saveNewWare(View view){
-        if (getIntent().getStringExtra("wareId") != null){
-            updateDataInfos(getIntent().getStringExtra("wareId"), wareResponse);
-            setInputFeldEmpty();
-            return;
+        if (checkProductInfosAreFilled()){
+            confirmThatProductAreTruelyExist();
         }
-        createWare(getInputField());
-        setInputFeldEmpty();
+    }
+
+    private void confirmThatProductAreTruelyExist() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirm ");
+        alert.setMessage("I confirm that the product really exist and the price is right. \n I also confirm that the infos about the product and me (location in market, market name) are really true and not fake \n I confirm that people can see and buy this product \n I confirm that this inserted price is for me the last price for the product in my shop  ");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (getIntent().getStringExtra("wareId") != null){
+                    updateDataInfos(getIntent().getStringExtra("wareId"), wareResponse);
+                    setInputFeldEmpty();
+                    return;
+                }
+                createWare(getInputField());
+                setInputFeldEmpty();
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListImageSelectedActivity.this, "Product can not be added", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
     }
 
     private void updateDataInfos(String wareId, WareResponse wareResponse) {

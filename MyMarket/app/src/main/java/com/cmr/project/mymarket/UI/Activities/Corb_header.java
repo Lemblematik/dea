@@ -1,5 +1,6 @@
 package com.cmr.project.mymarket.UI.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +63,7 @@ public class Corb_header extends AppCompatActivity {
 
     public static EditText carrier_infos;
     public static LinearLayout livraison_linearlayout;
+    ClientResponseModel clientResponseModel;
 
 
 
@@ -90,7 +93,7 @@ public class Corb_header extends AppCompatActivity {
         editHandleCarrier();
 
 
-        final ClientResponseModel clientResponseModel = getInfosForUserApp();
+        clientResponseModel = getInfosForUserApp();
         getAllWaresInCart(clientResponseModel.getClientId());
 
 
@@ -100,30 +103,9 @@ public class Corb_header extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                resultDate = corb_date.getText().toString();
-                for(WareResponse wareResponse: wareResponses){
-                    OrdersRequestModell ordersRequestModell = new OrdersRequestModell();
-                    ordersRequestModell.setNameClient(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
-                    ordersRequestModell.setNameProduct(wareResponse.getName());
-                    ordersRequestModell.setNumberProduct(wareResponse.getCount());
-                    ordersRequestModell.setPhoneNbr(clientResponseModel.getPhone());
-                    ordersRequestModell.setRecoveryDate(resultDate);
-                    ordersRequestModell.setWareSellerId(wareResponse.getWareSellerId());
-
-                    //FOR POST
-                    CarrierOrder carrierOrder = new CarrierOrder();
-                    carrierOrder.setWareName(wareResponse.getName());
-                    carrierOrder.setCategory(wareResponse.getCategory());
-                    carrierOrder.setMarketPlace(wareResponse.getMarketPlace());
-                    carrierOrder.setPosition(wareResponse.getMarketPosition());
-                    carrierOrder.setNameSeller(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
-
-
-                    carrierOrders.add(carrierOrder);
-                    createOrders(ordersRequestModell);
+                if(checkOrdersDateIsFilled()){
+                    handleConfirmSendOrders();
                 }
-                restartCorbView();
             }
         });
 
@@ -136,33 +118,34 @@ public class Corb_header extends AppCompatActivity {
         btnSendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resultDate = corb_date.getText().toString();
-                for(WareResponse wareResponse: wareResponses){
-                    //FOR POST
-                    CarrierOrder carrierOrder = new CarrierOrder();
-                    carrierOrder.setWareName(wareResponse.getName());
-                    carrierOrder.setCategory(wareResponse.getCategory());
-                    carrierOrder.setMarketPlace(wareResponse.getMarketPlace());
-                    carrierOrder.setPosition(wareResponse.getMarketPosition());
-                    carrierOrder.setNameSeller(wareResponse.getWareSellerName());
-                    carrierOrders.add(carrierOrder);
-
+                if(checkMailInfosAreFilled()){
+                    handleConfirmSendEmailToCarrier();
                 }
-                mailRequest.setCarrierOrderRespons(carrierOrders);
-                mailRequest.setDate(resultDate);
-                mailRequest.setMessage(corb_mail_message.getText().toString());
-                mailRequest.setNameSender(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
-                mailRequest.setSubject(corb_mail_subject.getText().toString());
-
-                //get id from carrier
-                mailRequest.setReceiverId(carrierId);
-                mailRequest.setSenderId(clientResponseModel.getClientId());
-
-                sendEmailToCarrier(mailRequest);
             }
         });
 
 
+
+    }
+
+    public boolean checkOrdersDateIsFilled(){
+        if(corb_date.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert the date to inform seller when you are coming", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+
+    }
+
+    public boolean checkMailInfosAreFilled(){
+        if(corb_mail_subject.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert the mail subject", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (corb_mail_message.getText().toString().matches("")) {
+            Toast.makeText(this, " Please, insert the message", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
 
     }
 
@@ -296,4 +279,85 @@ public class Corb_header extends AppCompatActivity {
         });
     }
 
+    public void handleConfirmSendOrders(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(Corb_header.this);
+        alert.setTitle("Confirm send");
+        alert.setMessage("Do you want to confirm your orders and send your commands to the sellers and go to take at this date");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                resultDate = corb_date.getText().toString();
+                for(WareResponse wareResponse: wareResponses){
+                    OrdersRequestModell ordersRequestModell = new OrdersRequestModell();
+                    ordersRequestModell.setNameClient(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
+                    ordersRequestModell.setNameProduct(wareResponse.getName());
+                    ordersRequestModell.setNumberProduct(wareResponse.getCount());
+                    ordersRequestModell.setPhoneNbr(clientResponseModel.getPhone());
+                    ordersRequestModell.setRecoveryDate(resultDate);
+                    ordersRequestModell.setWareSellerId(wareResponse.getWareSellerId());
+
+                    //FOR POST
+                    CarrierOrder carrierOrder = new CarrierOrder();
+                    carrierOrder.setWareName(wareResponse.getName());
+                    carrierOrder.setCategory(wareResponse.getCategory());
+                    carrierOrder.setMarketPlace(wareResponse.getMarketPlace());
+                    carrierOrder.setPosition(wareResponse.getMarketPosition());
+                    carrierOrder.setNameSeller(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
+
+
+                    carrierOrders.add(carrierOrder);
+                    createOrders(ordersRequestModell);
+                }
+                restartCorbView();
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Corb_header.this, "orders not send", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
+    }
+
+
+
+    public void handleConfirmSendEmailToCarrier(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(Corb_header.this);
+        alert.setTitle("Confirm send of mail");
+        alert.setMessage("Do you want really to send this email to the Carrier and be present at this date to do the market with him?");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                resultDate = corb_date.getText().toString();
+                for(WareResponse wareResponse: wareResponses){
+                    //FOR POST
+                    CarrierOrder carrierOrder = new CarrierOrder();
+                    carrierOrder.setWareName(wareResponse.getName());
+                    carrierOrder.setCategory(wareResponse.getCategory());
+                    carrierOrder.setMarketPlace(wareResponse.getMarketPlace());
+                    carrierOrder.setPosition(wareResponse.getMarketPosition());
+                    carrierOrder.setNameSeller(wareResponse.getWareSellerName());
+                    carrierOrders.add(carrierOrder);
+
+                }
+                mailRequest.setCarrierOrderRespons(carrierOrders);
+                mailRequest.setDate(resultDate);
+                mailRequest.setMessage(corb_mail_message.getText().toString());
+                mailRequest.setNameSender(clientResponseModel.getFirstName() + " " + clientResponseModel.getLastName());
+                mailRequest.setSubject(corb_mail_subject.getText().toString());
+
+                //get id from carrier
+                mailRequest.setReceiverId(carrierId);
+                mailRequest.setSenderId(clientResponseModel.getClientId());
+
+                sendEmailToCarrier(mailRequest);
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Corb_header.this, "Email not send", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
+    }
 }

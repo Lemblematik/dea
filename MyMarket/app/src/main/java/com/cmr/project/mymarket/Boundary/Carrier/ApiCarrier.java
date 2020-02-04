@@ -10,6 +10,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -25,6 +26,11 @@ public interface ApiCarrier {
     @GET("carriers/marketName/{marketName}")
     Call<List<CarrierResponseModel>> getCarriers(@Path("marketName") String marketName);
 
+    @GET("carriers/{carrierId}")
+    Call<CarrierResponseModel> getCarrier(@Path("carrierId") String carrierId);
+
+    @DELETE("carriers/{carrierId")
+    Call<Void> deleteAccount(@Path("carrierId") String carrierId);
 
 
 }

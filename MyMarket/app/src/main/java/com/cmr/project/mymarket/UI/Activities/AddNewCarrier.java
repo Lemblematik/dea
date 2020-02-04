@@ -1,5 +1,7 @@
 package com.cmr.project.mymarket.UI.Activities;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -17,7 +19,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -120,12 +124,65 @@ public class AddNewCarrier extends AppCompatActivity {
 
     }
 
+    public void confirmBecomeCarrier(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Confirm Infos");
+        alert.setMessage("I confirm that:\n -> all this inserted infos is correct and i want \n ->to become the next carrier in your market \n -> to help people to find the shop, where they have choosen the products\n -> to be serious, not plan to deal the client \n -> get the best appreciation of the client, so that he'll always reserve you for the future reservation");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                createWare(getInputField());
+                setInputFeldEmpty();
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(AddNewCarrier.this, "New Carrier can not be added", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
+    }
+
     //handle button foto
     public void clickUploadCarrier(View view){
-        //check run time permission
-        Intent intent1 = new Intent(this, InsertNewWare.class);
+        Intent intent1 = new Intent(AddNewCarrier.this, InsertNewWare.class);
         isCallFromCarrier = true;
         startActivity(intent1);
+
+    }
+
+    public boolean checkCarrierInfosAreFilled(){
+        if(lastname_registrate.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert the your Lastname", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (service_price.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert how much your client have to buy you for your service", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (firstname_registrate.getText().toString().matches("")){
+            Toast.makeText(this,  " Please, insert your Firstname", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (phone_registrate.getText().toString().matches("") || phone_registrate.getText().toString().length()!=9){
+            Toast.makeText(this,  " Your phone number should have 9 digit begining with 6: eg: 677889911 ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (old_carrier.getText().toString().matches("") || phone_registrate.getText().toString().length()!=9){
+            Toast.makeText(this,  " Your old should be added ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }else if (position_registrate.getText().toString().matches("") || phone_registrate.getText().toString().length()!=9){
+            Toast.makeText(this,  " Describe your position in market, enable client to find you ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (owndescription_registrate.getText().toString().matches("") || phone_registrate.getText().toString().length()!=9){
+            Toast.makeText(this,  " Describe something about you, enable client to get the first best appreciation of you ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,  " Check also if market name and your function infos are correct", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+
     }
 
     public List<String> getAllImages(){
@@ -214,8 +271,10 @@ public class AddNewCarrier extends AppCompatActivity {
     }
 
     public void saveNewCarrier(View view){
-        createWare(getInputField());
-        setInputFeldEmpty();
+        if(checkCarrierInfosAreFilled()){
+            confirmBecomeCarrier();
+        }
+
     }
     public void createWare(CarrierRequestModell wareRequest) {
         ApiCarrier api = ApiClientCarrier.getClient().create(ApiCarrier.class);

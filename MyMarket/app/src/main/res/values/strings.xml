@@ -66,10 +66,10 @@
     <string name="orders_phone">Phone Of Client</string>
     <string name="insert_corb_date">Enter your desired day of taking</string>
     <string name="nav_myCorb">My corb</string>
-    <string name="dea_infos">\n\n DEA (Digital Economy Administration) is a legalized company in Cameroon for the development of mobile applications. \n \n DEA GROUP helps you to degitalize your business through a mobile application to allow you to be closer \n to your customers and customers to get in touch with you very quickly in a few milliseconds and place their order \n \n \n \n If you want to be part of our partners, we will be very happy to develop your company mobile application for you \n \n \n \n We will reply by email: \n \n paul_kamdem@outlook.com \n \n \n CEO Paul Kamdem</string>
+    <string name="dea_infos">\n\n DEA (Digital Economy Administration) is a legalized company in Cameroon to digitalise all the markets in Cameoon. \n \n DEA GROUP helps you to digitalise your shop store in market enabling more people to make shop through a mobile application  \n enabling your customers to get in touch with you very quickly in a few milliseconds and place their order \n \n \n \n \' Dernier Prix App \' is this app enabling two best things: the visibility of all shop store in market and enable clients to do market very easy , quickly and really cheaper.. \n Enable people like \' Apacheur \'  really proud and respectfull for their work because they know all shop store in a market and many people need orientation when buying in market and nobody like \" Apacheur \" can help us to do this.\n \n \n We are in this 6 months trial period, to check if this can help the market or not. When not, you will cancel the  APP from PlayStore. ALL IS FREE. \n You don\'t ask money to anybody, only the seller and the carrier will need money for their service. \n\n Please give us your feedback and let us know if this app is helpful for you. \n We will reply by email: \n \n infos@dea-shop.com \n \n \n CEO Paul Kamdem</string>
     <string name="anaconda_info">La SOCIETE ANACONDA est une structure spécialisée dans la distribution du mobilier de bureau et d’intérieur. Créée vers la fin des années 1990, la SOCIETE ANACONDA a su s\'adapter à la demande de ses clients à travers des offres propres à la demande et au marché pour devenir un pionnier du mobilier pour les entreprises et les ménages au Cameroun et dans la sous-région \n\n PDG: Monsieur Samuel FOKOU \n Siège Social: Yaoundé - Cameroun \n Agences: NKoldongo face station BOCOM - MVAN à côté de BUCA Voyage\n\n\n Horaires:\n ouverture 8h 30 - Fermeture 19 (lundi à vendredi) \n Samedi: Ouverture 8h 30 - fermeture 18h \n\n Fiche Signalétique ANACONDA</string>
     <string name="nav_post_apacheur">Post</string>
-    <string name="acceptCondition">Accept the condition</string>
+    <string name="acceptCondition">I confirm that this infos is correct</string>
     <string name="appreciation">Appreciation:</string>
     <string name="insert_age">Insert your old?</string>
     <string name="insert_position">Describe your position in market</string>
@@ -154,5 +154,6 @@
     <string name="answerMail">Answer of mail</string>
     <string name="changeMarketName">You can Change the market name inside of all the app, to see only the products coming from this market</string>
     <string name="changeMarketNameTitle">Change Market</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

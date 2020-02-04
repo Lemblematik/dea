@@ -1,12 +1,15 @@
 package com.cmr.project.mymarket.UI.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +50,7 @@ public class MyWares extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyWares.this, ListImageSelectedActivity.class));
+                noteBeforeInsertProduct();
             }
         });
 
@@ -104,5 +107,24 @@ public class MyWares extends AppCompatActivity {
             Runtime.getRuntime().gc();
         }
         Log.d("destroy","destroy_______________________");
+    }
+
+
+    public void noteBeforeInsertProduct(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(MyWares.this);
+        alert.setTitle("Politics for inserting new product");
+        alert.setMessage("Some points are importants before inserting new product: \n -> Don't put for every product more than 2 or 3 fotos \n -> Put really the last price for the product to do the marketing and make people interesting for your product \n -> You can set a price and delete after getting your waiting number of reservation \n For this trial period of 6 months, every person may put only 4 products and can delete and change products every time, but cannot put more than 4 products ");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(MyWares.this, ListImageSelectedActivity.class));
+            }
+        }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MyWares.this, "New Product can not be added", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
     }
 }
